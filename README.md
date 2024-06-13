@@ -24,12 +24,30 @@ kubeadm init --control-plane-endpoint=API-server-IP:6443 --upload-certs
 
 # Install KubeSphere 
 
-## download yaml 
+## Quick Start 
 
 ```bash
 kubectl apply -f https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/kubesphere-installer.yaml
 
+
+
 kubectl apply -f https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/cluster-configuration.yaml
+
+```
+### check log 
+```bash
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
+```
+
+
+## Manual 
+## download yaml 
+
+```bash
+curl -L -O https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/cluster-configuration.yaml
+
+curl -L -O https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/kubesphere-installer.yaml
+
 
 ```
 ## install 
