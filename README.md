@@ -16,3 +16,7 @@ apt update -y && apt upgrade -y
 ```bash
 curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/main/prepare-crio-node.sh | bash
 ```
+## init Cluster 
+```bash
+kubeadm init --control-plane-endpoint=API-server-IP:6443 --upload-certs
+```
