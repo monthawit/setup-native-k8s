@@ -20,3 +20,29 @@ curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/main/prepar
 ```bash
 kubeadm init --control-plane-endpoint=API-server-IP:6443 --upload-certs
 ```
+
+
+# Install KubeSphere 
+
+## download yaml 
+
+```bash
+curl -L -O https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/cluster-configuration.yaml
+
+curl -L -O https://github.com/kubesphere/ks-installer/releases/download/v3.4.1/kubesphere-installer.yaml
+```
+## install 
+
+```bash
+kubectl apply -f kubesphere-installer.yaml
+
+kubectl apply -f cluster-configuration.yaml
+
+```
+
+
+## Check install LOG   
+
+```bash
+kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
+```
