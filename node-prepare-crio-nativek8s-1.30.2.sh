@@ -28,7 +28,7 @@ sudo apt -y upgrade
 
 ### install CRI-O ###
 apt install jq -y
-curl https://raw.githubusercontent.com/cri-o/packaging/main/get | bash -s -- -a arm64
+curl https://raw.githubusercontent.com/cri-o/packaging/main/get | bash
 sudo systemctl daemon-reload
 sudo systemctl enable crio --now crio
 crictl version
