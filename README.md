@@ -14,7 +14,7 @@ apt update -y && apt upgrade -y
 
 ## install CRI-O and Tools
 ```bash
-curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/main/prepare-crio-node.sh | bash
+curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/main/node-prepare-crio-nativek8s-1.30.2.sh | bash
 ```
 ## init Cluster 
 ```bash
