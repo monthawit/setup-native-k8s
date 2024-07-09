@@ -1,9 +1,13 @@
 OS=xUbuntu_22.04
-VERSION=1.30
+VERSION=1.28
+
+### Disable SWAP
 
 sudo swapoff -a
 sudo rm /swap.img
 sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
+
+### Config OS Network Mofule
 
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
@@ -34,7 +38,7 @@ curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/
 
 sudo apt update -y
 
-sudo apt install cri-o cri-o-runc -y
+curl https://raw.githubusercontent.com/cri-o/packaging/main/get | bash -s -- -a arm64
 
 sudo systemctl daemon-reload
 
