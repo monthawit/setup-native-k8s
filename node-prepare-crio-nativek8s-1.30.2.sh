@@ -1,13 +1,10 @@
-OS=xUbuntu_22.04
-VERSION=1.28
-
-### Disable SWAP
+### Disable SWAP ###
 
 sudo swapoff -a
 sudo rm /swap.img
 sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 
-### Config OS Network Mofule
+### Config OS Network Mofule ###
 
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 overlay
@@ -25,29 +22,18 @@ EOF
 
 sudo sysctl --system
 
+
 sudo apt update -y
 sudo apt -y upgrade
 
-
-
-echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
-echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
-
-curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key add -
-curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key add -
-
-sudo apt update -y
-
+### install CRI-O ###
+apt install jq -y
 curl https://raw.githubusercontent.com/cri-o/packaging/main/get | bash -s -- -a arm64
-
 sudo systemctl daemon-reload
-
 sudo systemctl enable crio --now crio
-
-sudo apt install cri-tools -y 
-
 crictl version
 
+### install storage Client ####
 sudo apt update -y
 apt-get install open-iscsi -y
 apt-get install nfs-common -y
