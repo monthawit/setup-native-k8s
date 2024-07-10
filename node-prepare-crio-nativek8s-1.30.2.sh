@@ -77,3 +77,14 @@ sudo apt-mark hold kubelet kubeadm kubectl
 #fix version. please insert version number
 #sudo apt-get install -y kubelet=1.28.2-00 kubeadm=1.28.2-00 kubectl=1.28.2-00
 #sudo apt-mark hold kubelet=1.28.2-00 kubeadm=1.28.2-00 kubectl=1.28.2-00
+
+
+# install bash-completion
+sudo apt-get install bash-completion
+
+# Add the completion script to your .bashrc file
+echo 'source /etc/bash_completion' >>~/.bashrc
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+
+# Apply changes
+source ~/.bashrc
