@@ -80,7 +80,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 
 # install bash-completion
-sudo apt-get install bash-completion
+sudo apt-get install bash-completion -y
 
 # Add the completion script to your .bashrc file
 echo 'source /etc/bash_completion' >>~/.bashrc
