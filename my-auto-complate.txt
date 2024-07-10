@@ -1,0 +1,15 @@
+# install bash-completion
+sudo apt-get install bash-completion
+
+# Add the completion script to your .bashrc file
+echo 'source /etc/bash_completion' >>~/.bashrc
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+
+# Apply changes
+source ~/.bashrc
+
+
+==========================================
+
+source /etc/bash_completion
+source <(kubectl completion bash)
