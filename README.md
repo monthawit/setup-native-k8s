@@ -65,3 +65,7 @@ kubectl apply -f cluster-configuration.yaml
 ```bash
 kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app in (ks-install, ks-installer)' -o jsonpath='{.items[0].metadata.name}') -f
 ```
+
+# Install Nginx Ingress Controller 
+
+https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal-clusters 
