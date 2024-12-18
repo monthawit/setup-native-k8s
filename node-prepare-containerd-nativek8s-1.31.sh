@@ -87,6 +87,11 @@ sudo apt update -y
 apt-get install open-iscsi -y
 apt-get install nfs-common -y
 
+############# Nmon For Monitoring ########
+
+apt install nmon -y
+
+
 ############# net-tools ################
 
 apt install net-tools -y
