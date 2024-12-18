@@ -23,13 +23,31 @@ EOF
 sudo sysctl --system
 
 
-sudo apt update -y && sudo apt -y upgrade
+sudo apt update -y && sudo apt upgrade -y
 
 ### install Containerd ###
 
+sudo apt install ca-certificates curl gnupg lsb-release -y
+
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update -y && sudo apt upgrade -y
 apt-get install containerd.io -y
 
-systemctl
+systemctl enable containerd
+systemctl start containerd 
+systemctl status containerd
+
+### install containerd tools for CLI ###
+
+wget https://github.com/containerd/nerdctl/releases/download/v2.0.2/nerdctl-2.0.2-linux-amd64.tar.gz
+tar -zxvf nerdctl-2.0.2-linux-amd64.tar.gz -C /usr/local/bin/
+sudo chmod +x /usr/local/bin/nerdctl
 
 ### install CRI-O ###
 #apt install jq -y
