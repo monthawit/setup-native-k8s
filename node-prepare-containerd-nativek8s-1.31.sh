@@ -27,21 +27,48 @@ sudo apt update -y && sudo apt upgrade -y
 
 ### install Containerd ###
 
-sudo apt install ca-certificates curl gnupg lsb-release -y
+set -e
 
+# Function to print messages
+log() {
+  echo -e "\e[1;32m[INFO]\e[0m $1"
+}
+
+log "Updating system packages"
+sudo apt update && sudo apt upgrade -y
+
+log "Installing required dependencies"
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+
+log "Adding Docker GPG key"
 sudo mkdir -p /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+log "Adding Docker repository"
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-sudo apt update -y && sudo apt upgrade -y
-apt-get install containerd.io -y
+log "Updating package sources"
+sudo apt update
 
-systemctl enable containerd
-systemctl start containerd 
-systemctl status containerd
+log "Installing containerd"
+sudo apt install -y containerd.io
+
+log "Configuring containerd"
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+
+log "Setting SystemdCgroup to true in containerd configuration"
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+
+log "Restarting and enabling containerd service"
+sudo systemctl restart containerd
+sudo systemctl enable containerd
+
+log "Verifying containerd installation"
+sudo systemctl status containerd --no-pager
+containerd --version
+
+log "Containerd installation completed successfully"
 
 ### install containerd tools for CLI ###
 
@@ -49,38 +76,7 @@ wget https://github.com/containerd/nerdctl/releases/download/v2.0.2/nerdctl-2.0.
 tar -zxvf nerdctl-2.0.2-linux-amd64.tar.gz -C /usr/local/bin/
 sudo chmod +x /usr/local/bin/nerdctl
 
-### install CRI-O ###
-#apt install jq -y
-#curl https://raw.githubusercontent.com/cri-o/packaging/main/get | bash
-#sudo systemctl daemon-reload
-#sudo systemctl enable crio --now crio
-#crictl version
 
-#KUBERNETES_VERSION=v1.31
-
-### install CRI-O 1.31 ###
-
-#CRIO_VERSION=v1.31
-#apt-get update -y
-#apt-get install -y software-properties-common curl
-#curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
-#    gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
-
-#echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/ /" |
-#    tee /etc/apt/sources.list.d/cri-o.list
-
-#apt-get update -y
-#apt-get install -y cri-o
-
-#systemctl enable crio.service
-#systemctl start crio.service
-
-### install cri tools ###
-
-#VERSION="v1.31.1"
-#wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz
-#sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
-#rm -f crictl-$VERSION-linux-amd64.tar.gz
 
 ### install storage Client ####
 sudo apt update -y
