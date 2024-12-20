@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ### Disable SWAP ###
 
 sudo swapoff -a
