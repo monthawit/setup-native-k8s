@@ -114,7 +114,9 @@ chmod 700 get_helm.sh
 
 ### create dir key for ubuntu older than 22.04 ####
 
-sudo mkdir -m 755 /etc/apt/keyrings
+#sudo mkdir -m 755 /etc/apt/keyrings
+
+### Create on step install containerd, dot's use this.
 
 ####################################################
 
