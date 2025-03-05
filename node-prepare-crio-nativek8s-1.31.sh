@@ -33,11 +33,11 @@ sudo apt -y upgrade
 #sudo systemctl enable crio --now crio
 #crictl version
 
-#KUBERNETES_VERSION=v1.31
+#KUBERNETES_VERSION=v1.32.2
 
-### install CRI-O 1.31 ###
+### install CRI-O 1.32.2 ###
 
-CRIO_VERSION=v1.31
+CRIO_VERSION=v1.32.2
 
 apt-get update -y
 apt-get install -y software-properties-common curl
@@ -59,7 +59,7 @@ systemctl start crio.service
 
 ### install cri tools ###
 
-VERSION="v1.31.1"
+VERSION="v1.32.2"
 wget https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-$VERSION-linux-amd64.tar.gz
 sudo tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
 rm -f crictl-$VERSION-linux-amd64.tar.gz
