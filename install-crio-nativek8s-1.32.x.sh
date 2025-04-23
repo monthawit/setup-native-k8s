@@ -97,4 +97,14 @@ sudo apt-get update
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-udo systemctl enable --now kubelet
+sudo systemctl enable --now kubelet
+
+# install bash-completion
+sudo apt-get install bash-completion -y
+
+# Add the completion script to your .bashrc file
+echo 'source /etc/bash_completion' >>~/.bashrc
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+
+# Apply changes
+source ~/.bashrc
