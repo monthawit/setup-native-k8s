@@ -14,17 +14,18 @@ sudo rm /swap.img
 sed -ri '/\sswap\s/s/^#?/#/' /etc/fstab
 
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
-overlay
-br_netfilter
+overlay                 #จำเป็นสำหรับ container runtime เช่น containerd หรือ Docker
+br_netfilter            #ทำให้สามารถใช้ iptables กับ network bridge ได้
 EOF
 
-sudo modprobe overlay
-sudo modprobe br_netfilter
+#โหลด modules ข้างต้นเข้าระบบทันทีโดยไม่ต้องรีบูต
+sudo modprobe overlay             
+sudo modprobe br_netfilter        
 
 cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-iptables  = 1
-net.bridge.bridge-nf-call-ip6tables = 1
-net.ipv4.ip_forward                 = 1
+net.bridge.bridge-nf-call-iptables  = 1    #เปิดให้ bridge network ผ่าน iptables ได้ (จำเป็นสำหรับ network policies)
+net.bridge.bridge-nf-call-ip6tables = 1    #เปิดให้ bridge network ผ่าน iptables ได้ (จำเป็นสำหรับ network policies) สำหรับ ipv6
+net.ipv4.ip_forward                 = 1    #เปิดให้ระบบสามารถ forward IP ได้ (จำเป็นสำหรับ pod networking)
 EOF
 
 sudo sysctl --system
