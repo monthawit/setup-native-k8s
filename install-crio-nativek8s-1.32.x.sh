@@ -58,10 +58,26 @@ systemctl start crio.service
 systemctl enable crio.service
 systemctl status crio.service
 
+##### install CRI-Tools #######
+
+sudo apt install cri-tools -y 
+
+crictl version
+
+############# install addon ################
+
+sudo apt update -y
+apt-get install open-iscsi -y
+apt-get install nfs-common -y
+apt install net-tools -y
 
 
+####################################################
+### create dir key for ubuntu older than 22.04 #####
+####################################################
+
+sudo mkdir -m 755 /etc/apt/keyrings
+
+####################################################
 
 
-
-
-    
