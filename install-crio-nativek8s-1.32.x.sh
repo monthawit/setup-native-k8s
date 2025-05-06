@@ -51,7 +51,7 @@ echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://download.o
 ##### install CRI-O #####
 
 apt-get update
-apt-get install -y cri-o kubelet kubeadm kubectl
+apt-get install -y cri-o
 
 #### Start And Enablre ########
 
