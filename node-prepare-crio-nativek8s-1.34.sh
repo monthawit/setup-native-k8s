@@ -37,7 +37,7 @@ sudo apt -y upgrade
 
 ### install CRI-O 1.32.2 ###
 
-CRIO_VERSION=v1.34.1
+CRIO_VERSION=v1.34
 
 apt-get update
 apt-get install -y software-properties-common curl
