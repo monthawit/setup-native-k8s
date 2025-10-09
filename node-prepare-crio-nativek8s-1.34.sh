@@ -39,22 +39,20 @@ sudo apt -y upgrade
 
 CRIO_VERSION=v1.34.1
 
-apt-get update -y
+apt-get update
 apt-get install -y software-properties-common curl
 
-curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
+curl -fsSL https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
 
-echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/ /" |
+echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/ /" |
     tee /etc/apt/sources.list.d/cri-o.list
 
-apt-get update -y
+apt-get update
+apt-get install -y cri-o 
 
-apt-get install -y cri-o
-
-systemctl enable crio.service
 systemctl start crio.service
-
+systemctl enable crio.service
 
 
 ### install cri tools ###
