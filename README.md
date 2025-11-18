@@ -69,3 +69,14 @@ kubectl logs -n kubesphere-system $(kubectl get pod -n kubesphere-system -l 'app
 # Install Nginx Ingress Controller 
 
 https://kubernetes.github.io/ingress-nginx/deploy/#bare-metal-clusters 
+
+# Fix CRI-O Registry Shotname 
+
+```bash 
+vi /etc/crio/crio.conf.d/10-crio.conf
+```
+add 
+```yaml
+[crio.image]
+short_name_mode = "disabled"
+```
