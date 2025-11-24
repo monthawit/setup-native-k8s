@@ -49,6 +49,16 @@ sudo apt update -y
 sudo apt install containerd.io -y
 
 
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+
+sudo systemctl restart containerd 
+sudo systemctl enable containerd
+
+
+
+
 ### install storage Client ####
 sudo apt update -y
 apt-get install open-iscsi -y
