@@ -21,4 +21,11 @@ sudo kubeadm upgrade plan
 kubeadm upgrade apply v1.34.3
 
 
-5. 
+5. all node 
+
+sudo kubeadm upgrade node
+
+
+6. all node 
+
+sudo apt-mark hold kubelet kubectl kubeadm
