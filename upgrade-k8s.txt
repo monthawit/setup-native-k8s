@@ -29,3 +29,9 @@ sudo kubeadm upgrade node
 6. all node 
 
 sudo apt-mark hold kubelet kubectl kubeadm
+
+
+7. all node 
+
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
