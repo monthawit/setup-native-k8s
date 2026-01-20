@@ -16,6 +16,10 @@ apt update -y && apt upgrade -y
 ```bash
 curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/main/node-prepare-crio-nativek8s-1.30.2.sh | bash
 ```
+Version 1.35 ContainerD 
+```bash
+curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/refs/heads/main/node-prepare-containerd-nativek8s-1.35.sh | bash
+```
 ## init Cluster 
 ```bash
 kubeadm init --control-plane-endpoint=API-server-IP:6443 --upload-certs
