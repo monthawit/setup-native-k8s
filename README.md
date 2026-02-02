@@ -102,7 +102,11 @@ cilium clustermesh connect \
 
 cilium clustermesh status --context k8s101
 ```
+### Debug list 
 
+```bash
+kubectl -n kube-system exec ds/cilium -- cilium-dbg service list
+```
 
 Install containerd  
 
