@@ -95,6 +95,12 @@ clustermesh-apiserver   LoadBalancer   10.111.89.219   10.151.1.61   2379:32538/
 cilium clustermesh connect \
   --context kubernetes-admin@kubernetes \
   --destination-context kubernetes-admin@k8s102
+
+cilium clustermesh connect \
+  --context k8s101 \
+  --destination-context kubernetes-admin@k8s102
+
+cilium clustermesh status --context k8s101
 ```
 
 
