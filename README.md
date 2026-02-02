@@ -47,6 +47,34 @@ helm install cilium cilium/cilium --version 1.18.6 \
   --set ipam.operator.clusterPoolIPv4PodCIDRList='{10.111.0.0/16}'
 ```
 
+## Prepare kubeconfig 
+```bash
+# 1. ย้ายไฟล์เก่าออกก่อนกันพลาด
+mv config-all config-all.bak
+
+# 2. สร้างโครงสร้างไฟล์ใหม่ (ดึงค่าจากไฟล์หลักของแต่ละเครื่อง)
+# หมายเหตุ: เครื่อง k8s101 ต้องมีไฟล์ /etc/kubernetes/admin.conf อยู่ปกติ
+cp /etc/kubernetes/admin.conf config-all
+
+# 3. แก้ไขชื่อ Cluster/Context/User ในไฟล์ใหม่ให้สื่อสารง่าย
+sed -i 's/kubernetes/cluster-101/g' config-all
+sed -i 's/kubernetes-admin/user-101/g' config-all
+sed -i 's/cluster-101-admin@cluster-101/k8s101/g' config-all
+
+# รวมไฟล์ 101 และ 102 เข้าด้วยกันแบบถูก Syntax 100%
+KUBECONFIG=config-all:temp102.yaml kubectl config view --flatten > config-merged.yaml
+
+# นำไฟล์ที่รวมแล้วมาใช้งาน
+mv config-merged.yaml config-all
+export KUBECONFIG=$(pwd)/config-all
+
+# ต้องเห็น 2 รายการ (k8s101 และ kubernetes-admin@k8s102)
+kubectl config get-contexts
+
+# ทดสอบดึง Nodes ของ cluster 102
+kubectl get nodes --context kubernetes-admin@k8s102
+```
+
 ## Setup Cluster Mesh 
 
 ```bash
