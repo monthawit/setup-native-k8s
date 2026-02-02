@@ -33,6 +33,21 @@ kubeadm init --pod-network-cidr=10.0.0.0/16 --cluster-name cluster1
 
 ```
 
+## install cilium cidr 
+
+```bash
+helm repo add cilium https://helm.cilium.io/
+```
+
+```bash
+helm install cilium cilium/cilium --version 1.18.6 \
+  --namespace kube-system \
+  --set cluster.name=k8s102 \
+  --set cluster.id=102 \
+  --set ipam.operator.clusterPoolIPv4PodCIDRList='{10.111.0.0/16}'
+```
+
+
 
 Install containerd  
 
