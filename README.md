@@ -5,6 +5,12 @@
 
 kubeadm init --control-plane-endpoint=master-node-ip-or-LoadBalancer-Virtual-ip:6443 --upload-certs
 
+kubeadm init --control-plane-endpoint=master-node-ip-or-LoadBalancer-Virtual-ip:6443 --upload-certs  --pod-network-cidr=10.111.0.0/16 --cluster-name k8s102
+
+kubeadm init --pod-network-cidr=10.0.0.0/16 --cluster-name cluster1
+
+kubeadm init --pod-network-cidr=10.0.0.0/16 --cluster-name cluster1
+
 ```
 
 
