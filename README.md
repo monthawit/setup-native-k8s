@@ -35,6 +35,18 @@ kubeadm init --pod-network-cidr=10.0.0.0/16 --cluster-name cluster1
 
 ## install cilium cidr 
 
+### Check IP range 
+
+```bash
+# for service 
+kubectl cluster-info dump | grep -m 1 service-cluster-ip-range
+
+# for pod
+kubectl -n kube-system get cm cilium-config -o yaml | grep -i 'cluster-pool-ipv4-cidr'
+
+```
+
+
 ```bash
 helm repo add cilium https://helm.cilium.io/
 ```
