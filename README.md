@@ -47,6 +47,14 @@ helm install cilium cilium/cilium --version 1.18.6 \
   --set ipam.operator.clusterPoolIPv4PodCIDRList='{10.111.0.0/16}'
 ```
 
+## Setup Cluster Mesh 
+
+```bash
+kubectl config get-contexts
+
+cilium clustermesh enable --context kubernetes-admin@k8s102 --service-type NodePort
+```
+
 
 
 Install containerd  
