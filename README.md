@@ -1,5 +1,11 @@
 # setup-native-k8s
 
+## Init Cluster 
+```bash
+
+kubeadm init --control-plane-endpoint=master-node-ip-or-LoadBalancer-Virtual-ip:6443 --upload-certs
+
+```
 
 
 Install containerd  
