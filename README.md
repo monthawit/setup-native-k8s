@@ -13,11 +13,19 @@ networking:
   podSubnet: "10.111.0.0/16"
 ```
 
+init config file 
+
+```bash
+kubeadm init --config kubeadm-config.yaml --upload-certs
+```
+
+one command 
+
 ```bash
 
 kubeadm init --control-plane-endpoint=master-node-ip-or-LoadBalancer-Virtual-ip:6443 --upload-certs
 
-kubeadm init --control-plane-endpoint=master-node-ip-or-LoadBalancer-Virtual-ip:6443 --upload-certs  --pod-network-cidr=10.111.0.0/16 --cluster-name k8s102
+kubeadm init --control-plane-endpoint=master-node-ip-or-LoadBalancer-Virtual-ip:6443 --upload-certs  --pod-network-cidr=10.111.0.0/16 
 
 kubeadm init --pod-network-cidr=10.0.0.0/16 --cluster-name cluster1
 
