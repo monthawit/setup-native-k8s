@@ -1,6 +1,18 @@
 # setup-native-k8s
 
 ## Init Cluster 
+
+kubeadm-config.yaml
+
+```yaml
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+clusterName: k8s102
+controlPlaneEndpoint: "10.151.1.50:6443"
+networking:
+  podSubnet: "10.111.0.0/16"
+```
+
 ```bash
 
 kubeadm init --control-plane-endpoint=master-node-ip-or-LoadBalancer-Virtual-ip:6443 --upload-certs
