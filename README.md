@@ -62,7 +62,12 @@ kubectl get svc -n kube-system clustermesh-apiserver
 NAME                    TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 clustermesh-apiserver   LoadBalancer   10.111.89.219   10.151.1.61   2379:32538/TCP   57s
 ```
-
+### Connect Mesh
+```bash
+cilium clustermesh connect \
+  --context kubernetes-admin@kubernetes \
+  --destination-context kubernetes-admin@k8s102
+```
 
 
 Install containerd  
