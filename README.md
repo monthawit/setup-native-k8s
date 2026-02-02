@@ -57,7 +57,7 @@ helm install cilium cilium/cilium --version 1.18.6 \
   --set cluster.name=k8s102 \
   --set cluster.id=102 \
   --set ipam.operator.clusterPoolIPv4PodCIDRList='{10.111.0.0/16}' \
-  --set ipv4NativeRoutingCIDR=10.111.0.0/16 \
+  --set ipv4NativeRoutingCIDR=10.111.0.0/16 \   #ต้องตรงกับ kubeadm-config.yaml
   --set k8sServiceHost=10.151.1.41 \
   --set k8sServicePort=6443
 ```
