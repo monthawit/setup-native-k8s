@@ -83,7 +83,7 @@ helm install cilium cilium/cilium --version 1.18.6 \
   --set ipv4NativeRoutingCIDR=10.111.0.0/16 \ # ยังไม่ใช้
   --set k8sServiceHost=10.151.1.41 \   #k8s api server
   --set k8sServicePort=6443 \  # k8s api port
-  --set clustermesh.enableEndpointSliceSyncing=true
+  --set clustermesh.enableEndpointSliceSyncing=true  # เปิดใช้งานเรียก service ข้างเดียว
 ```
 
 ## Prepare kubeconfig 
