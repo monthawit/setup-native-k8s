@@ -174,6 +174,12 @@ spec:
     targetPort: 80
 ```
 
+### Check cluster ID and cluster name 
+
+```bash
+kubectl get cm -n kube-system cilium-config -o yaml | grep -E "cluster-id|cluster-name|ipv4-range"
+```
+
 
 ## Install containerd  
 
