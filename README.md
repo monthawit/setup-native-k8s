@@ -81,8 +81,8 @@ helm install cilium cilium/cilium --version 1.18.6 \
   --set ipam.operator.clusterPoolIPv4PodCIDRList='{10.111.0.0/16}' \
   --set service-cluster-ip-range=10.112.0.0/16 \
   --set ipv4NativeRoutingCIDR=10.111.0.0/16 \ # ยังไม่ใช้
-  --set k8sServiceHost=10.151.1.41 \
-  --set k8sServicePort=6443 \
+  --set k8sServiceHost=10.151.1.41 \   #k8s api server
+  --set k8sServicePort=6443 \  # k8s api port
   --set clustermesh.enableEndpointSliceSyncing=true
 ```
 
