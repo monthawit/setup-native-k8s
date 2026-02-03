@@ -65,7 +65,10 @@ kubeadm init --pod-network-cidr=10.0.0.0/16 --cluster-name cluster1
 # for service 
 kubectl cluster-info dump | grep -m 1 service-cluster-ip-range
 
-# for pod
+# for POD
+kubectl cluster-info dump | grep -m 1 cluster-pool-ipv4-cidr
+
+# for pod with cilium 
 kubectl -n kube-system get cm cilium-config -o yaml | grep -i 'cluster-pool-ipv4-cidr'
 
 ```
