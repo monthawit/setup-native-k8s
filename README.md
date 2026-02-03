@@ -178,6 +178,22 @@ kubeadm init --control-plane-endpoint=API-server-IP:6443 --upload-certs
 kubectl scale deployment clustermesh-apiserver -n kube-system --replicas=3
 ```
 
+### Service YAML for Cluster Mesh 
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-nginx102
+  namespace: myapp-k8s102
+  annotations:
+    io.cilium/global-service: "true"
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+```
+
 
 # Install KubeSphere 
 
