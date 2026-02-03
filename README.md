@@ -172,6 +172,12 @@ curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/refs/heads/
 kubeadm init --control-plane-endpoint=API-server-IP:6443 --upload-certs
 ```
 
+### Scale Cilium Cluster Mesh pod 
+
+```bash
+kubectl scale deployment clustermesh-apiserver -n kube-system --replicas=3
+```
+
 
 # Install KubeSphere 
 
