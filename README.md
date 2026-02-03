@@ -149,29 +149,6 @@ cilium clustermesh status --context k8s101
 kubectl -n kube-system exec ds/cilium -- cilium-dbg service list
 ```
 
-Install containerd  
-
-https://github.com/containerd/containerd/blob/main/docs/getting-started.md 
-
-* Prepare VM
-## Update And Upgrade OS
-```bash
-apt update -y && apt upgrade -y
-```
-
-## install CRI-O and Tools
-```bash
-curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/main/node-prepare-crio-nativek8s-1.30.2.sh | bash
-```
-Version 1.35 ContainerD 
-```bash
-curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/refs/heads/main/node-prepare-containerd-nativek8s-1.35.sh | bash
-```
-## init Cluster 
-```bash
-kubeadm init --control-plane-endpoint=API-server-IP:6443 --upload-certs
-```
-
 ### Scale Cilium Cluster Mesh pod 
 
 ```bash
@@ -194,6 +171,29 @@ spec:
     targetPort: 80
 ```
 
+
+## Install containerd  
+
+https://github.com/containerd/containerd/blob/main/docs/getting-started.md 
+
+* Prepare VM
+## Update And Upgrade OS
+```bash
+apt update -y && apt upgrade -y
+```
+
+## install CRI-O and Tools
+```bash
+curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/main/node-prepare-crio-nativek8s-1.30.2.sh | bash
+```
+Version 1.35 ContainerD 
+```bash
+curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/refs/heads/main/node-prepare-containerd-nativek8s-1.35.sh | bash
+```
+## init Cluster 
+```bash
+kubeadm init --control-plane-endpoint=API-server-IP:6443 --upload-certs
+```
 
 # Install KubeSphere 
 
