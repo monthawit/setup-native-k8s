@@ -164,14 +164,16 @@ kubectl scale deployment clustermesh-apiserver -n kube-system --replicas=3
 apiVersion: v1
 kind: Service
 metadata:
-  name: test-nginx102
-  namespace: myapp-k8s102
+  name: rebel-base
   annotations:
-    io.cilium/global-service: "true"
+    service.cilium.io/global: "true"
+    #service.cilium.io/shared: "false" 
 spec:
+  type: ClusterIP
   ports:
   - port: 80
-    targetPort: 80
+  selector:
+    name: rebel-base
 ```
 
 ### Check cluster ID and cluster name 
