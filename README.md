@@ -301,3 +301,8 @@ kubectl get pod  -n kube-system
 ```bash
 kubectl taint node milkyk8s-master-01 node-role.kubernetes.io/control-plane:NoSchedule-
 ```
+
+## Basic Authen 
+```bash
+kubectl create secret generic mimir-auth --from-literal=username=admin --from-literal=password=xxxxx -n namespace-name
+```
