@@ -296,3 +296,8 @@ Check pod
 ```bash
 kubectl get pod  -n kube-system
 ```
+
+## untaint 
+```bash
+kubectl taint node milkyk8s-master-01 node-role.kubernetes.io/control-plane:NoSchedule-
+```
