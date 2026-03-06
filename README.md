@@ -264,3 +264,35 @@ add
 [crio.image]
 short_name_mode = "disabled"
 ```
+
+## Install metric server
+
+Apply yaml
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
+
+edit deployment 
+```bash
+kubectl edit deployment metrics-server -n kube-system
+```
+Add yaml code
+```yaml
+
+    spec:
+      containers:
+      - args:
+        - --kubelet-insecure-tls   # เราแอดอันนี้ 
+        - --cert-dir=/tmp
+        - --secure-port=10250
+        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+        - --kubelet-use-node-status-port
+        - --metric-resolution=15s
+        image: registry.k8s.io/metrics-server/metrics-server:v0.7.2
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+```
+Check pod 
+```bash
+kubectl get pod  -n kube-system
+```
