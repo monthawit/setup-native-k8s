@@ -18,7 +18,7 @@ apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
 networking:
   podSubnet: "10.111.0.0/16"      # วง Pod ที่คุณต้องการ
-  serviceSubnet: "10.112.0.0/12"  # วง Service ที่ไม่ทับกับ 101
+  serviceSubnet: "10.112.0.0/16"  # วง Service ที่ไม่ทับกับ 101
   dnsDomain: "cluster.local"
 
 ======== version 3 =====================
@@ -29,7 +29,7 @@ clusterName: k8s102
 controlPlaneEndpoint: "10.151.1.50:6443"
 networking:
   podSubnet: "10.102.0.0/16"      # วง Pod เฉพาะของ 102
-  serviceSubnet: "10.97.0.0/12"  # วง Service เฉพาะของ 102
+  serviceSubnet: "10.97.0.0/16"  # วง Service เฉพาะของ 102
   dnsDomain: "cluster.local"
 ---
 apiVersion: kubelet.config.k8s.io/v1beta1
