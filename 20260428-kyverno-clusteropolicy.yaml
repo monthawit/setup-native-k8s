@@ -1,0 +1,25 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: baseline-security
+spec:
+  rules:
+  - name: inject-basic-security
+    match:
+      resources:
+        kinds:
+        - Pod
+        namespaceSelector:
+          matchLabels:
+            project-type: customer
+    mutate:
+      patchStrategicMerge:
+        spec:
+          +(hostUsers): false          
+          containers:
+          - (name): "*"
+            securityContext:
+              +(allowPrivilegeEscalation): false
+              +(privileged): false
+              +(seccompProfile):
+                type: RuntimeDefault
