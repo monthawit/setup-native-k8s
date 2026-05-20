@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 
+# curl -s https://raw.githubusercontent.com/monthawit/setup-native-k8s/refs/heads/main/fix-inotify-too-many-open-files.sh | bash
 # กำหนดค่าที่ต้องการตั้งตั้ง
 WATCHES_LIMIT=524288
 INSTANCES_LIMIT=512
