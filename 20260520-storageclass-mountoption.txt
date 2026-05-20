@@ -1,4 +1,13 @@
 mountOptions:
+  - discard
+
+fstrim realtime 
+
+#### แบบ Schedule #####
+
+noatime,nodiscard
+
+mountOptions:
   - noatime
 
 noatime,nodiscard
@@ -6,3 +15,5 @@ noatime,nodiscard
 systemctl enable fstrim.timer
 systemctl start fstrim.timer
 Linux จะ trim สัปดาห์ละครั้ง
+
+
