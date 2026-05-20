@@ -1,0 +1,8 @@
+mountOptions:
+  - noatime
+
+noatime,nodiscard
+แล้วเปิด periodic trim:
+systemctl enable fstrim.timer
+systemctl start fstrim.timer
+Linux จะ trim สัปดาห์ละครั้ง
